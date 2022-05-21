@@ -16,7 +16,7 @@ body {
   background: linear-gradient(60deg, #5f27cd 0%, #00d2d3 100%);
 }
 
-h1, h2, h3, h4, h5, h6, p {
+p {
   margin: 0;
 }
 
