@@ -9,6 +9,7 @@ import { LocalstorageService } from './services/localstorage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  mode = 'list';
   todos: Todo[] = [];
   title = 'Lista de Tarefas';
   text = '';
@@ -27,6 +28,10 @@ export class AppComponent {
     this.loadAllTasksFromStorage();
   }
 
+  changeMode(mode: string) {
+    this.mode = mode;
+  }
+
   add() {
     const { title } = this.form.value;
     const id = this.todos.length + 1;
@@ -35,6 +40,7 @@ export class AppComponent {
     this.form.reset();
 
     this.saveAllTasksOnStorage();
+    this.mode = 'list';
   }
 
   markAsDone(todo: Todo) {
