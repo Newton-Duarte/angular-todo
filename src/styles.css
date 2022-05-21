@@ -4,8 +4,16 @@
 }
 
 body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Roboto', sans-serif;
-  background-color: #f0f0f0;
+  font-weight: 300;
+  background: #3023ae;
+  background: -moz-linear-gradient(60deg, #3023ae 0%, #c86dd7 100%);
+  background: -webkit-linear-gradient(60deg, #3023ae 0%, #c86dd7 100%);
+  background: linear-gradient(60deg, #3023ae 0%, #c86dd7 100%);
 }
 
 h1, h2, h3, h4, h5, h6, p {
