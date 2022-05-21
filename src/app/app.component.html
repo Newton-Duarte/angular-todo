@@ -1,45 +1,80 @@
 <div class="container">
-  <h1>{{ title }}</h1>
-  <form
-    [formGroup]="form"
-  >
-    <div class="add-task">
+  <h1 class="animated jackInTheBox">{{ title }}</h1>
+  <div id="modal" class="animated flipInX" *ngIf="mode === 'add'">
+    <h2 class="text-center">Nova Tarefa</h2>
+    <form
+      [formGroup]="form"
+    >
       <div class="form-group">
         <input
           type="text"
           name="todo"
           placeholder="Add task..."
+          minlength="3"
+          maxlength="60"
           formControlName="title"
         >
-        <small
+        <p
+          class="danger"
           *ngIf="form.controls['title'].invalid && !form.controls['title'].pristine"
-          [style.color]="'red'"
         >
           Informe um título: 3 a 60 caracteres
-        </small>
+        </p>
       </div>
       <button
         type="submit"
+        class="btn"
         [disabled]="form.invalid"
         (click)="add()"
       >
-        Add
+        <i class="far fa-save"></i>
+        Salvar
       </button>
-    </div>
-  </form>
-  <p *ngIf="!todos.length" class="text-center">Você não possui tarefas!</p>
-  <ul>
-    <li *ngFor="let todo of todos">
-      <p
-        [ngClass]="{ 'done': todo.done }"
-        (click)="markAsDone(todo)"
-      >
-        {{ todo.title }}
-      </p>
-      <div>
-        <button type="button" (click)="markAsDone(todo)">{{ todo.done ? 'Refazer' : 'Concluir' }}</button>
-        <button type="button" (click)="remove(todo)">Excluir</button>
-      </div>
-    </li>
-  </ul>
+    </form>
+  </div>
+  <div id="todos" class="animated flipInX" *ngIf="mode === 'list'">
+    <p *ngIf="!todos.length else todos_list" class="text-center">Você não possui tarefas!</p>
+    <ng-template #todos_list>
+      <ul>
+        <li *ngFor="let todo of todos">
+          <p
+            [ngClass]="{ 'done': todo.done }"
+            (click)="markAsDone(todo)"
+          >
+            {{ todo.title }}
+          </p>
+          <div class="actions">
+            <button
+              type="button"
+              (click)="markAsDone(todo)"
+            >
+              <i [ngClass]="todo.done ? 'fas fa-2x fa-check-circle' : 'far fa-2x fa-check-circle'"></i>
+            </button>
+            <button
+              type="button"
+              (click)="remove(todo)"
+            >
+              <i class="far fa-2x fa-trash-alt"></i>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+  <button
+    class="add-button btn animated fadeInUp"
+    *ngIf="mode === 'list'"
+    (click)="changeMode('add')"
+  >
+    <i class="fas fa-plus-circle"></i>
+    Nova Tarefa
+  </button>
+  <button
+    class="add-button btn animated fadeInUp"
+    *ngIf="mode === 'add'"
+    (click)="changeMode('list')"
+  >
+    <i class="fas fa-times"></i>
+    Cancelar
+  </button>
 </div>
