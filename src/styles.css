@@ -24,6 +24,30 @@ ul {
   text-align: left;
   padding: 1rem;
   list-style: none;
-  padding: 0;
-  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  line-height: 3rem;
+  text-indent: 1rem;
+  font-size: 1.125rem;
+  margin-bottom: 0.4rem;
+}
+
+.btn {
+  display: block;
+  background-color: #000;
+  border: none;
+  padding: 1.125rem;
+  color: #fff;
+  border-radius: 3rem;
+  font-size: 1rem;
+}
+
+.danger {
+  color: red;
 }
